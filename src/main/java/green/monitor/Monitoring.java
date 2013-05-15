@@ -6,7 +6,7 @@ import java.util.List;
 
 @XmlRootElement(name = "monitoring")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class aMonitoring {
+public class Monitoring {
 
     @XmlAttribute
     private String version;
@@ -19,7 +19,7 @@ public class aMonitoring {
     @XmlElementWrapper(name = "items")
     private List<Item> items;
 
-    public aMonitoring() {
+    public Monitoring() {
         monitors = new ArrayList<Monitor>();
         items = new ArrayList<Item>();
     }

@@ -6,6 +6,7 @@ import java.io.StringReader;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertThat;
 
 public class GetMonitoringServiceTest {
@@ -35,6 +36,7 @@ public class GetMonitoringServiceTest {
         final List<Item> items = monitoring.getItems();
         assertThat(items.size(), is(1));
         final Item firstItem = items.get(0);
+        assertThat(firstItem.getId(), is(not("0")));
         assertThat(firstItem.getName(), is("cbis"));
         assertThat(firstItem.getMonitor(), is("webservice"));
         assertThat(firstItem.getDescription(), is("This is a monitor for cbis service."));
@@ -43,6 +45,7 @@ public class GetMonitoringServiceTest {
         assertThat(firstItemParams.get(0).getValue(), is("1.0"));
         assertThat(firstItemParams.get(1).getName(), is("version2"));
         assertThat(firstItemParams.get(1).getValue(), is("2.0"));
+
 
         final List<Monitor> monitors = monitoring.getMonitors();
         assertThat(monitors.size(), is(1));

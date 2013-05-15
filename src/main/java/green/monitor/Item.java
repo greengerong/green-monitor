@@ -3,10 +3,13 @@ package green.monitor;
 import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @XmlRootElement(name = "item")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Item {
+
+    private  String id;
     @XmlAttribute
     private String name;
     @XmlAttribute
@@ -20,6 +23,11 @@ public class Item {
 
     public Item() {
         params = new ArrayList<Param>();
+        id = UUID.randomUUID().toString();
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getName() {

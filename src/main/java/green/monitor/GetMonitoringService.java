@@ -8,9 +8,9 @@ import java.io.Reader;
 public class GetMonitoringService implements IGetMonitoringService {
 
     @Override
-    public Monitoring getMonitoring(Reader reader) throws JAXBException {
-        JAXBContext jc = JAXBContext.newInstance(Monitoring.class);
+    public aMonitoring getMonitoring(Reader reader) throws JAXBException {
+        JAXBContext jc = JAXBContext.newInstance(aMonitoring.class);
         Unmarshaller u = jc.createUnmarshaller();
-        return (Monitoring) u.unmarshal(reader);
+        return (aMonitoring) u.unmarshal(reader);
     }
 }

@@ -28,7 +28,7 @@ public class GetMonitoringServiceTest {
                 "    </items>\n" +
                 "</monitoring>");
 
-        final Monitoring monitoring = service.getMonitoring(reader);
+        final aMonitoring monitoring = service.getMonitoring(reader);
 
         assertThat(monitoring.getVersion(), is("1.0"));
 

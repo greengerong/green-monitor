@@ -13,6 +13,15 @@ public class Monitor {
     @XmlValue
     private String monitor;
 
+    public Monitor() {
+    }
+
+    public Monitor(String name, Class runnerClass, String version) {
+        this.version = version;
+        this.name = name;
+        this.monitor = runnerClass.getName();
+    }
+
     public String getName() {
         return name;
     }
@@ -31,6 +40,14 @@ public class Monitor {
 
     public String getMonitor() {
         return monitor;
+    }
+
+    public Class getRunnerClass() {
+        try {
+            return Class.forName(monitor);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void setMonitor(String monitor) {

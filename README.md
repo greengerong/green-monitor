@@ -1,3 +1,3 @@
-build status: [![Build Status](https://travis-ci.org/greengerong/green-monitor.png?branch=master)](https://travis-ci.org/greengerong/green-monitor)
+build status: [![Build Status](https://travis-ci.org/greengerong/green-monitor.png)](https://travis-ci.org/greengerong/green-monitor)
 
 ===============================

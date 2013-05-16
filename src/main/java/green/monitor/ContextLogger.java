@@ -32,4 +32,9 @@ public class ContextLogger {
     public void append(String text, Object... args) {
         append(String.format(text, args));
     }
+
+    @Override
+    public String toString() {
+        return writer.toString();
+    }
 }

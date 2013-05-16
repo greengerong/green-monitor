@@ -1,11 +1,9 @@
 package green.monitor;
 
-import java.util.List;
-
 
 public class WebServiceMonitorRunner implements MonitorRunner {
     @Override
-    public void loadContext(List<Param> params) {
+    public void loadContext(Item item) {
         //To change body of implemented methods use File | Settings | File Templates.
     }
 

@@ -1,10 +1,8 @@
 package green.monitor;
 
-import java.util.List;
-
 public interface MonitorRunner {
 
-    void loadContext(List<Param> params);
+    void loadContext(Item item);
 
     boolean run(ContextLogger logger);
 }

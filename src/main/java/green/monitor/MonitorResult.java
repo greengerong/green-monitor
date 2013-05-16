@@ -2,31 +2,25 @@ package green.monitor;
 
 
 public class MonitorResult {
-    private String time;
+    private long time;
     private String log;
-    private boolean result;
+    private boolean success;
 
-    public String getTime() {
-        return time;
+    public MonitorResult(boolean success, String log, long time) {
+        this.success = success;
+        this.log = log;
+        this.time = time;
     }
 
-    public void setTime(String time) {
-        this.time = time;
+    public long getTime() {
+        return time;
     }
 
     public String getLog() {
         return log;
     }
 
-    public void setLog(String log) {
-        this.log = log;
-    }
-
-    public boolean isResult() {
-        return result;
-    }
-
-    public void setResult(boolean result) {
-        this.result = result;
+    public boolean isSuccess() {
+        return success;
     }
 }

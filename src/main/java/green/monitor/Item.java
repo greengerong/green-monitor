@@ -1,15 +1,14 @@
 package green.monitor;
 
 import javax.xml.bind.annotation.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import java.util.*;
 
 @XmlRootElement(name = "item")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Item {
 
-    private  String id;
+    private String id;
     @XmlAttribute
     private String name;
     @XmlAttribute
@@ -17,12 +16,13 @@ public class Item {
     @XmlElement
     private String description;
 
-    @XmlElement(name = "param")
-    @XmlElementWrapper(name = "params")
-    private List<Param> params;
+    //    @XmlElement(name = "param")
+//    @XmlElementWrapper(name = "params")
+    @XmlJavaTypeAdapter(HashMapAdapter.class)
+    private Map<String, String> params;
 
     public Item() {
-        params = new ArrayList<Param>();
+        params = new HashMap<String, String>();
         id = UUID.randomUUID().toString();
     }
 
@@ -54,11 +54,11 @@ public class Item {
         this.description = description;
     }
 
-    public List<Param> getParams() {
+    public Map<String, String> getParams() {
         return params;
     }
 
-    public void setParams(List<Param> params) {
+    public void setParams(Map<String, String> params) {
         this.params = params;
     }
 }

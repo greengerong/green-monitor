@@ -9,6 +9,8 @@ import java.io.Reader;
 import java.util.HashMap;
 import java.util.Map;
 
+import static green.monitor.DefaultMonitorRunners.getDefaultRunner;
+
 public class MonitorFactory {
     public final static MonitorFactory instance = new MonitorFactory();
     private final Map<String, Monitor> runner = new HashMap<String, Monitor>();
@@ -20,20 +22,22 @@ public class MonitorFactory {
     }
 
     protected MonitorFactory(IGetMonitoringService getMonitoringService) {
-
         this.getMonitoringService = getMonitoringService;
         initMonitorRunner();
     }
 
     protected void initMonitorRunner() {
-        final Monitor monitor = new Monitor("web-service", WebServiceMonitorRunner.class, "1.0");
-        addRunner(monitor);
+        for (Monitor monitor : getDefaultRunner()) {
+            addRunner(monitor);
+        }
     }
 
     private void addRunner(Monitor monitor) {
-        runner.put(monitor.getName(), monitor);
+        final String key = monitor.getName();
+        if (!runner.containsKey(key)) {
+            runner.put(key, monitor);
+        }
     }
-
 
     public static MonitorFactory getInstance() {
         return instance;
@@ -43,11 +47,14 @@ public class MonitorFactory {
         return runner;
     }
 
-    protected synchronized Monitoring loadMonitoring(Reader reader) throws JAXBException {
-        if (monitoring == null) {
-            monitoring = getMonitoringService.getMonitoring(reader);
-            fillRunners(monitoring);
+    protected Monitoring loadMonitoring(Reader reader) throws JAXBException {
+        synchronized (this) {
+            if (monitoring == null) {
+                monitoring = getMonitoringService.getMonitoring(reader);
+                fillRunners(monitoring);
+            }
         }
+
         return monitoring;
     }
 
@@ -75,6 +82,7 @@ public class MonitorFactory {
 
         final MonitorRunner monitorRunner = loadRunner(item, monitor);
         final ContextLogger logger = new ContextLogger();
+
         final DateTime startDate = DateTime.now();
         final boolean isSuccess = monitorRunner.run(logger);
         final long timer = DateTime.now().getMillis() - startDate.getMillis();

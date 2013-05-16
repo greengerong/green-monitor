@@ -55,7 +55,7 @@ public class MonitorFactoryTest {
         final Item item = new Item();
         item.setName("test item");
         item.setMonitor(monitor.getName());
-        item.getParams().add(new Param("key", "value"));
+//        item.getParams().add(new Param("key", "value"));
 
         final Monitoring monitoring = new Monitoring();
         monitoring.getItems().add(item);

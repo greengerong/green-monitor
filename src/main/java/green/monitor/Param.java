@@ -4,7 +4,7 @@ import javax.xml.bind.annotation.*;
 
 @XmlRootElement(name = "param")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Param {
+class Param {
 
     @XmlAttribute
     private String name;

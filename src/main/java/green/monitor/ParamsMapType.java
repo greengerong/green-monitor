@@ -1,10 +1,11 @@
 package green.monitor;
 
+import com.google.common.collect.Lists;
+
 import javax.xml.bind.annotation.XmlElement;
-import java.util.ArrayList;
 import java.util.List;
 
-public  class ParamsMapType {
-    @XmlElement(name ="param")
-    public List<Param> entryList = new ArrayList<Param>();
+class ParamsMapType {
+    @XmlElement(name = "param")
+    public List<Param> entryList = Lists.newArrayList();
 }

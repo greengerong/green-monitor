@@ -4,7 +4,7 @@ import javax.xml.bind.annotation.adapters.XmlAdapter;
 import java.util.HashMap;
 import java.util.Map;
 
-public class HashMapAdapter extends XmlAdapter<ParamsMapType, Map<String, String>> {
+class HashMapAdapter extends XmlAdapter<ParamsMapType, Map<String, String>> {
 
     @Override
     public ParamsMapType marshal(Map<String, String> map) {

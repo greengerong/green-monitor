@@ -1,7 +1,8 @@
 package green.monitor;
 
+import com.google.common.collect.Lists;
+
 import javax.xml.bind.annotation.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @XmlRootElement(name = "monitoring")
@@ -13,15 +14,13 @@ public class Monitoring {
 
     @XmlElement(name = "monitor")
     @XmlElementWrapper(name = "monitors")
-    private List<Monitor> monitors;
+    private List<Monitor> monitors = Lists.newArrayList();
 
     @XmlElement(name = "item")
     @XmlElementWrapper(name = "items")
-    private List<Item> items;
+    private List<Item> items = Lists.newArrayList();
 
     public Monitoring() {
-        monitors = new ArrayList<Monitor>();
-        items = new ArrayList<Item>();
     }
 
     public List<Monitor> getMonitors() {

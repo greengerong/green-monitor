@@ -16,8 +16,6 @@ public class Item {
     @XmlElement
     private String description;
 
-    //    @XmlElement(name = "param")
-//    @XmlElementWrapper(name = "params")
     @XmlJavaTypeAdapter(HashMapAdapter.class)
     private Map<String, String> params;
 

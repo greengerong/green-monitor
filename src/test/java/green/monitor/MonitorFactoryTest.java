@@ -26,11 +26,11 @@ public class MonitorFactoryTest {
     @Mock
     private IGetMonitorConfigService getMonitorConfigService;
 
-    private MonitorFactory monitorFactory;
+    private IMonitorFactory IMonitorFactory;
 
     @Before
     public void setUp() throws Exception {
-        monitorFactory = new MonitorFactory(getMonitoringService, getMonitorConfigService);
+        IMonitorFactory = new MonitorFactory(getMonitoringService, getMonitorConfigService);
     }
 
     @Test
@@ -48,11 +48,11 @@ public class MonitorFactoryTest {
         given(getMonitoringService.getMonitoring(reader)).willReturn(exceptedMonitoring);
 
         //when
-        final Monitoring monitoring = monitorFactory.getMonitoring();
+        final Monitoring monitoring = IMonitorFactory.getMonitoring();
 
         //then
         assertThat(monitoring, is(exceptedMonitoring));
-        final Map<String, Monitor> runner = monitorFactory.getRunner();
+        final Map<String, Monitor> runner = IMonitorFactory.getRunner();
         assertThat(runner.containsKey(monitor.getName()), is(true));
         assertThat(runner.get(monitor.getName()), is(monitor));
     }
@@ -70,10 +70,10 @@ public class MonitorFactoryTest {
         monitoring.getMonitors().add(monitor);
 
         given(getMonitoringService.getMonitoring(any(Reader.class))).willReturn(monitoring);
-        monitorFactory.getMonitoring();
+        IMonitorFactory.getMonitoring();
 
         //when
-        final MonitorResult result = monitorFactory.run(item.getId());
+        final MonitorResult result = IMonitorFactory.run(item.getId());
 
         //then
         assertThat(result.isSuccess(), is(true));

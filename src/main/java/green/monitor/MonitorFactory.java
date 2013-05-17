@@ -12,13 +12,14 @@ import java.util.Map;
 
 import static green.monitor.DefaultMonitorRunners.getDefaultRunner;
 
-public class MonitorFactory {
+public class MonitorFactory implements IMonitorFactory {
     private final Map<String, Monitor> runner = new HashMap<String, Monitor>();
-    private IGetMonitoringService getMonitoringService;
-    private Monitoring monitoring;
     private final IGetMonitorConfigService getMonitorConfigService;
+    private final IGetMonitoringService getMonitoringService;
+    private Monitoring monitoring;
 
-    public MonitorFactory(IGetMonitoringService getMonitoringService, IGetMonitorConfigService monitorConfigService) {
+    public MonitorFactory(IGetMonitoringService getMonitoringService,
+                          IGetMonitorConfigService monitorConfigService) {
         this.getMonitoringService = getMonitoringService;
         this.getMonitorConfigService = monitorConfigService;
         initMonitorRunner();
@@ -37,10 +38,12 @@ public class MonitorFactory {
         }
     }
 
+    @Override
     public Map<String, Monitor> getRunner() {
         return runner;
     }
 
+    @Override
     public Monitoring getMonitoring() throws JAXBException {
         ensureLoadMonitoring();
         return monitoring;
@@ -65,6 +68,7 @@ public class MonitorFactory {
         }
     }
 
+    @Override
     public MonitorResult run(final String id) throws Exception {
 
         final Item item = Iterables.find(monitoring.getItems(), new Predicate<Item>() {
@@ -87,6 +91,7 @@ public class MonitorFactory {
         return new MonitorResult(isSuccess, logger.toString(), timer);
     }
 
+    @Override
     public Map<String, MonitorResult> runAll() throws Exception {
         final Map<String, MonitorResult> map = Maps.newHashMap();
         for (Item item : monitoring.getItems()) {

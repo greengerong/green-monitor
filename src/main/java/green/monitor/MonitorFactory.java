@@ -13,17 +13,14 @@ import java.util.Map;
 import static green.monitor.DefaultMonitorRunners.getDefaultRunner;
 
 public class MonitorFactory {
-    public final static MonitorFactory instance = new MonitorFactory();
     private final Map<String, Monitor> runner = new HashMap<String, Monitor>();
     private IGetMonitoringService getMonitoringService;
     private Monitoring monitoring;
+    private final IGetMonitorConfigService getMonitorConfigService;
 
-    protected MonitorFactory() {
-        this(new GetMonitoringService());
-    }
-
-    protected MonitorFactory(IGetMonitoringService getMonitoringService) {
+    public MonitorFactory(IGetMonitoringService getMonitoringService, IGetMonitorConfigService monitorConfigService) {
         this.getMonitoringService = getMonitoringService;
+        this.getMonitorConfigService = monitorConfigService;
         initMonitorRunner();
     }
 
@@ -40,23 +37,22 @@ public class MonitorFactory {
         }
     }
 
-    public static MonitorFactory getInstance() {
-        return instance;
-    }
-
     public Map<String, Monitor> getRunner() {
         return runner;
     }
 
-    public Monitoring loadMonitoring(Reader reader) throws JAXBException {
-        synchronized (this) {
-            if (monitoring == null) {
-                monitoring = getMonitoringService.getMonitoring(reader);
-                fillRunners(monitoring);
-            }
-        }
-
+    public Monitoring getMonitoring() throws JAXBException {
+        ensureLoadMonitoring();
         return monitoring;
+    }
+
+    private synchronized void ensureLoadMonitoring()
+            throws JAXBException {
+        if (monitoring == null) {
+            final Reader reader = getMonitorConfigService.getMonitorConfigReader();
+            monitoring = getMonitoringService.getMonitoring(reader);
+            fillRunners(monitoring);
+        }
     }
 
     private void fillRunners(Monitoring monitoring) {

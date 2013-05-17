@@ -2,6 +2,7 @@ package green.monitor;
 
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
+import com.google.common.collect.Maps;
 import org.joda.time.DateTime;
 
 import javax.xml.bind.JAXBException;
@@ -47,7 +48,7 @@ public class MonitorFactory {
         return runner;
     }
 
-    protected Monitoring loadMonitoring(Reader reader) throws JAXBException {
+    public Monitoring loadMonitoring(Reader reader) throws JAXBException {
         synchronized (this) {
             if (monitoring == null) {
                 monitoring = getMonitoringService.getMonitoring(reader);
@@ -88,6 +89,16 @@ public class MonitorFactory {
         final long timer = DateTime.now().getMillis() - startDate.getMillis();
 
         return new MonitorResult(isSuccess, logger.toString(), timer);
+    }
+
+    public Map<String, MonitorResult> runAll() throws Exception {
+        final Map<String, MonitorResult> map = Maps.newHashMap();
+        for (Item item : monitoring.getItems()) {
+            final String id = item.getId();
+            map.put(id, run(id));
+        }
+
+        return map;
     }
 
     private void assertMonitorNoNull(Item item, Monitor monitor) {

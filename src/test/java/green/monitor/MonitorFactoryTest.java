@@ -6,7 +6,6 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import javax.xml.bind.JAXBException;
 import java.io.Reader;
 import java.io.StringReader;
 import java.util.Map;
@@ -34,7 +33,7 @@ public class MonitorFactoryTest {
     }
 
     @Test
-    public void shouldGetMonitoring() throws JAXBException {
+    public void shouldGetMonitoring() throws Exception {
         //given
         final StringReader reader = new StringReader("");
         final Monitoring exceptedMonitoring = new Monitoring();

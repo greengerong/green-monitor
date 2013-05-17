@@ -7,13 +7,12 @@ import org.joda.time.DateTime;
 
 import javax.xml.bind.JAXBException;
 import java.io.Reader;
-import java.util.HashMap;
 import java.util.Map;
 
 import static green.monitor.DefaultMonitorRunners.getDefaultRunner;
 
 public class MonitorFactory implements IMonitorFactory {
-    private final Map<String, Monitor> runner = new HashMap<String, Monitor>();
+    private final Map<String, Monitor> runner = Maps.newHashMap();
     private final IGetMonitorConfigService getMonitorConfigService;
     private final IGetMonitoringService getMonitoringService;
     private Monitoring monitoring;
@@ -44,13 +43,13 @@ public class MonitorFactory implements IMonitorFactory {
     }
 
     @Override
-    public Monitoring getMonitoring() throws JAXBException {
+    public Monitoring getMonitoring() throws Exception {
         ensureLoadMonitoring();
         return monitoring;
     }
 
     private synchronized void ensureLoadMonitoring()
-            throws JAXBException {
+            throws Exception {
         if (monitoring == null) {
             final Reader reader = getMonitorConfigService.getMonitorConfigReader();
             monitoring = getMonitoringService.getMonitoring(reader);

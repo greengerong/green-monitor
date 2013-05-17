@@ -1,13 +1,12 @@
 package green.monitor;
 
-import javax.xml.bind.JAXBException;
 import java.util.Map;
 
 public interface IMonitorFactory {
 
     Map<String, Monitor> getRunner();
 
-    Monitoring getMonitoring() throws JAXBException;
+    Monitoring getMonitoring() throws Exception;
 
     MonitorResult run(String id) throws Exception;
 

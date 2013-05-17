@@ -1,6 +1,7 @@
 package green.monitor;
 
 import com.google.common.collect.Lists;
+import green.monitor.runner.WebServiceMonitorRunner;
 
 import java.util.ArrayList;
 import java.util.List;

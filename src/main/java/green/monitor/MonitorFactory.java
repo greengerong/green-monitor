@@ -3,9 +3,9 @@ package green.monitor;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Maps;
+import green.monitor.runner.MonitorRunner;
 import org.joda.time.DateTime;
 
-import javax.xml.bind.JAXBException;
 import java.io.Reader;
 import java.util.Map;
 

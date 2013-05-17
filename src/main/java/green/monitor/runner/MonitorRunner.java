@@ -1,4 +1,7 @@
-package green.monitor;
+package green.monitor.runner;
+
+import green.monitor.ContextLogger;
+import green.monitor.Item;
 
 public interface MonitorRunner {
 

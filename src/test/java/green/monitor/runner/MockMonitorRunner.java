@@ -1,4 +1,8 @@
-package green.monitor;
+package green.monitor.runner;
+
+import green.monitor.ContextLogger;
+import green.monitor.Item;
+import green.monitor.runner.MonitorRunner;
 
 public class MockMonitorRunner implements MonitorRunner {
 

@@ -37,4 +37,8 @@ public class ContextLogger {
     public String toString() {
         return writer.toString();
     }
+
+    public void append(Exception ex) {
+        append(ex.getMessage());
+    }
 }

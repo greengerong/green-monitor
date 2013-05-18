@@ -12,7 +12,7 @@ public class GetMonitorConfigService implements IGetMonitorConfigService {
     @Override
     public Reader getMonitorConfigReader() {
         final String config = String.format(MONITOR_CONFIG_FILE, getEnv());
-        final InputStream stream = this.getClass().getClassLoader().getResourceAsStream(config);
+        final InputStream stream = ResourceUtil.getResourceAsStream(config);
         return new InputStreamReader(stream);
     }
 

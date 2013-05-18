@@ -5,18 +5,22 @@ import com.google.common.collect.Iterables;
 import com.google.common.collect.Maps;
 import green.monitor.runner.MonitorRunner;
 import org.joda.time.DateTime;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.io.Reader;
 import java.util.Map;
 
 import static green.monitor.DefaultMonitorRunners.getDefaultRunner;
 
+@Component
 public class MonitorFactory implements IMonitorFactory {
     private final Map<String, Monitor> runner = Maps.newHashMap();
     private final IGetMonitorConfigService getMonitorConfigService;
     private final IGetMonitoringService getMonitoringService;
     private Monitoring monitoring;
 
+    @Autowired
     public MonitorFactory(IGetMonitoringService getMonitoringService,
                           IGetMonitorConfigService monitorConfigService) {
         this.getMonitoringService = getMonitoringService;

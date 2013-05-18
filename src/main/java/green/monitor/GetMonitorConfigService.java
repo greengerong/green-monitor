@@ -1,9 +1,12 @@
 package green.monitor;
 
+import org.springframework.stereotype.Component;
+
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 
+@Component
 public class GetMonitorConfigService implements IGetMonitorConfigService {
 
     public static final String MONITOR_CONFIG_FILE = "monitor-config%s.xml";

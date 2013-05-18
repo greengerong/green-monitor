@@ -34,6 +34,7 @@ public class HttpConnectionMonitorRunner implements MonitorRunner {
     public boolean run(ContextLogger logger) {
         try {
             final HttpClient httpClient = new HttpClient(new URL(url), "", 1);
+//            httpClient.
         } catch (IOException e) {
 
         }

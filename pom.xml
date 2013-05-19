@@ -21,6 +21,7 @@
         <commons-lange.version>2.6</commons-lange.version>
         <jackson.version>1.7.1</jackson.version>
         <commons-httpclient.version>3.1</commons-httpclient.version>
+        <spring-jdbc.version>3.2.2.RELEASE</spring-jdbc.version>
     </properties>
 
     <dependencies>
@@ -82,6 +83,11 @@
             <artifactId>commons-httpclient</artifactId>
             <version>${commons-httpclient.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>${spring-jdbc.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -94,25 +100,7 @@
                     <target>1.6</target>
                 </configuration>
             </plugin>
-            <!--<plugin>-->
-            <!--<groupId>org.codehaus.cargo</groupId>-->
-            <!--<artifactId>cargo-maven2-plugin</artifactId>-->
-            <!--<version>1.0</version>-->
-            <!--<configuration>-->
-            <!--<container>-->
-            <!--<containerId>tomcat7x</containerId>-->
-            <!--<type>remote</type>-->
-            <!--</container>-->
-            <!--<configuration>-->
-            <!--<type>runtime</type>-->
-            <!--<properties>-->
-            <!--<cargo.remote.username>admin</cargo.remote.username>-->
-            <!--<cargo.remote.password>admin</cargo.remote.password>-->
-            <!--<cargo.tomcat.manager.url>http://localhost:8080/green.monitor</cargo.tomcat.manager.url>-->
-            <!--</properties>-->
-            <!--</configuration>-->
-            <!--</configuration>-->
-            <!--</plugin>-->
+
         </plugins>
     </build>
 </project>

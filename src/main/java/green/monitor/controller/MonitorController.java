@@ -20,7 +20,6 @@ public class MonitorController {
 
     @Autowired
     public MonitorController(IMonitorFactory monitorFactory) {
-
         this.monitorFactory = monitorFactory;
     }
 
@@ -43,5 +42,12 @@ public class MonitorController {
     @ResponseBody
     Map<String, MonitorResult> runAll() throws Exception {
         return monitorFactory.runAll();
+    }
+
+    @RequestMapping(value = "check", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    String check() throws Exception {
+        return "green-monitor";
     }
 }

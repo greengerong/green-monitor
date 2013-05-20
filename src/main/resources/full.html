@@ -1,0 +1,33 @@
+<!DOCTYPE html >
+<html xmlns:ng="http://angularjs.org">
+<head>
+    <title>green-monitor</title>
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js"></script>
+</head>
+<body id="ng-app" ng-app="monitorApp">
+
+<div ng-controller="monitorCtr" class="container">
+    <h2>{{vm.name}}(version:{{vm.version}})</h2>
+
+    <div class="box well" ng-repeat="item in vm.items">
+        <h4>{{item.name}}</h4>
+
+        <div class="row-fluid">
+            <div class="span10">
+                <ul>
+                    <li ng-repeat="p in item.params">{{p.value}}</li>
+                </ul>
+                <p>{{item.description}}</p>
+            </div>
+            <div class="span2 alert-success">
+                <div class="right">{{getStatues(item.id)}}</div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+</body>
+</html>

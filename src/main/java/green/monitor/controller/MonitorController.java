@@ -43,11 +43,4 @@ public class MonitorController {
     Map<String, MonitorResult> runAll() throws Exception {
         return monitorFactory.runAll();
     }
-
-    @RequestMapping(value = "check", method = RequestMethod.GET)
-    public
-    @ResponseBody
-    String check() throws Exception {
-        return "green-monitor";
-    }
 }

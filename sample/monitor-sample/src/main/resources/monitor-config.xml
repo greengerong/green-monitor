@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<monitoring version="1.0" name="monitor-sample">
+    <monitors>
+    </monitors>
+    <items>
+        <item monitor="webservice" name="cbis">
+            <params>
+                <param name="version">1.0</param>
+                <param name="version">1.0</param>
+            </params>
+            <description>This is a monitor for cbis service.</description>
+        </item>
+    </items>
+</monitoring>

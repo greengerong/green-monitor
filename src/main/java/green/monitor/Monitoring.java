@@ -12,6 +12,9 @@ public class Monitoring {
     @XmlAttribute
     private String version;
 
+    @XmlAttribute
+    private String name;
+
     @XmlElement(name = "monitor")
     @XmlElementWrapper(name = "monitors")
     private List<Monitor> monitors = Lists.newArrayList();
@@ -45,5 +48,13 @@ public class Monitoring {
 
     public void setVersion(String version) {
         this.version = version;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

@@ -19,7 +19,7 @@ import java.io.StringWriter;
 import java.util.Map;
 import java.util.Properties;
 
-import static green.monitor.ResourceUtil.getResourceAsStream;
+import static green.monitor.ResourceUtil.getThreadResourceAsStream;
 
 public class WebServiceMonitorRunner implements MonitorRunner {
     private String url;
@@ -49,7 +49,7 @@ public class WebServiceMonitorRunner implements MonitorRunner {
             this.assertProperties = new Properties();
             try {
                 final String anAssert = params.get("assert");
-                assertProperties.load(getResourceAsStream(anAssert));
+                assertProperties.load(getThreadResourceAsStream(anAssert));
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -57,7 +57,7 @@ public class WebServiceMonitorRunner implements MonitorRunner {
     }
 
     private InputStream getRequest(String requestFile) {
-        return getResourceAsStream(requestFile);
+        return getThreadResourceAsStream(requestFile);
     }
 
     @Override

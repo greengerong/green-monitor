@@ -1,6 +1,5 @@
 package green.monitor;
 
-import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Component;
 
 import java.io.InputStream;
@@ -18,7 +17,7 @@ public class GetMonitorConfigService implements IGetMonitorConfigService {
     @Override
     public Reader getMonitorConfigReader() {
         final String config = String.format(MONITOR_CONFIG_FILE, getEnv());
-        final InputStream stream = ResourceUtil.getResourceAsStream(config);
+        final InputStream stream = ResourceUtil.getThreadResourceAsStream(config);
         return new InputStreamReader(stream);
     }
 

@@ -4,13 +4,16 @@ import java.io.InputStream;
 
 public class ResourceUtil {
 
-    private static Class type = ResourceUtil.class;
-
-    protected void setClass(Class type) {
-        ResourceUtil.type = type;
+    public static InputStream getThreadResourceAsStream(String requestFile) {
+        final ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+        return getResourceAsStream(requestFile, classLoader);
     }
 
-    public static InputStream getResourceAsStream(String requestFile) {
-        return type.getClass().getResourceAsStream(requestFile);
+    private static InputStream getResourceAsStream(String requestFile, ClassLoader classLoader) {
+        return classLoader.getResourceAsStream(requestFile);
+    }
+
+    public static InputStream getCurrentResourceAsStream(String requestFile) {
+        return getResourceAsStream(requestFile, ResourceUtil.class.getClassLoader());
     }
 }

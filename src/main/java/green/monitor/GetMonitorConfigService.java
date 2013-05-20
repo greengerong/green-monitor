@@ -1,10 +1,13 @@
 package green.monitor;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Component;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
+
+import static org.apache.commons.lang.StringUtils.isBlank;
 
 @Component
 public class GetMonitorConfigService implements IGetMonitorConfigService {
@@ -24,7 +27,4 @@ public class GetMonitorConfigService implements IGetMonitorConfigService {
         return isBlank(env) ? "" : ("." + env);
     }
 
-    private boolean isBlank(String env) {
-        return env == null || env == "";
-    }
 }

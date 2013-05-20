@@ -49,6 +49,7 @@ public class DataBaseMonitorRunner implements MonitorRunner {
         username = params.get("username");
         url = params.get("url");
         driverClassName = params.get("driverClassName");
+        script = params.get("script");
 
     }
 

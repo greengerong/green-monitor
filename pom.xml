@@ -4,7 +4,7 @@
 
     <groupId>com.github.greengerong</groupId>
     <artifactId>green.monitor</artifactId>
-    <version>1.0</version>
+    <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>green-monitor</name>
@@ -38,7 +38,7 @@
         <guava.version>14.0.1</guava.version>
         <joda.version>2.1</joda.version>
         <commons-lange.version>2.6</commons-lange.version>
-        <jackson.version>1.7.1</jackson.version>
+        <jackson.version>1.9.12</jackson.version>
         <commons-httpclient.version>3.1</commons-httpclient.version>
         <spring-jdbc.version>3.2.2.RELEASE</spring-jdbc.version>
     </properties>

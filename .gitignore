@@ -1,2 +1,4 @@
 .idea/
 target/
+sample/monitor/target/
+sample/monitor/.idea/

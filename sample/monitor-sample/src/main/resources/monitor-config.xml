@@ -3,12 +3,23 @@
     <monitors>
     </monitors>
     <items>
-        <item monitor="webservice" name="cbis">
+        <item monitor="http-connection" name="hello service">
             <params>
-                <param name="version">1.0</param>
-                <param name="version">1.0</param>
+                <param name="url">http://localhost:8080/demo/hello</param>
+                <param name="method">GET</param>
+                <param name="response-code">200</param>
+                <param name="param">name=success</param>
             </params>
-            <description>This is a monitor for cbis service.</description>
+            <description>This is a monitor for hello service.should be success.</description>
+        </item>
+        <item monitor="http-connection" name="error service 2">
+            <params>
+                <param name="url">http://localhost:8080/demo/failed</param>
+                <param name="method">GET</param>
+                <param name="response-code">200</param>
+                <param name="param">name=must be failed</param>
+            </params>
+            <description>This is a monitor for error service.should be failed.</description>
         </item>
     </items>
 </monitoring>

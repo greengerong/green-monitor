@@ -39,12 +39,17 @@ angular.module("monitorApp", ["ui.bootstrap"])
 
             var refreshService = function () {
                 var getMonitorStatus = function (item) {
+                    item.ajaxStatus = "start...";
                     $http.get(host + "/monitor/" + item.id).success(function (data) {
                         $timeout(function () {
                             item.result = data;
+                            item.ajaxStatus = "complete";
+
                         })
-                    }).error(function () {
-                            console.log(arguments);
+                    }).error(function (data, status) {
+                            $timeout(function () {
+                                item.ajaxStatus = "error " + status;
+                            })
                         });
                 };
 

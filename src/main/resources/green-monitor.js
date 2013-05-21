@@ -1,7 +1,7 @@
 angular.module("monitorApp", ["ui.bootstrap"])
+    .value("refreshTimer", 2000)
     .factory("monitorConfigMapper",function () {
         return function (config) {
-
             angular.forEach(config.items, function (item, i) {
                 item.paramkeyValuePairs = [];
                 angular.forEach(item.params, function (value, key) {
@@ -32,13 +32,45 @@ angular.module("monitorApp", ["ui.bootstrap"])
             return status ? "Passed" : "Failed";
         };
     })
-    .controller("monitorCtr", ["$scope", "$timeout", "$http", "monitorConfigMapper"
-        , function ($scope, $timeout, $http, monitorConfigMapper) {
+    .controller("monitorCtr", ["$scope", "$timeout", "$http", "$window", "refreshTimer",
+        "monitorConfigMapper"
+        , function ($scope, $timeout, $http, $window, refreshTimer, monitorConfigMapper) {
+
+            var refreshService = function () {
+                var getMonitorStatus = function (item) {
+                    $http.get("http://localhost:8080/monitor/" + item.id).success(function (data) {
+                        $timeout(function () {
+                            item.result = data;
+                        })
+                    }).error(function () {
+                            console.log(arguments);
+                        });
+                };
+
+                var getAllMonitorStatus = function () {
+                    var monitoring = $scope.vm;
+                    angular.forEach(monitoring.items, function (item) {
+                        getMonitorStatus(item);
+                    });
+                };
+
+                var timer = null;
+                return {
+                    start: function () {
+                        timer = $window.setInterval(getAllMonitorStatus, refreshTimer);
+                    },
+                    stop: function () {
+                        if (timer) {
+                            $window.clearInterval(timer);
+                        }
+                    }
+                };
+            }();
 
             $http.get("http://localhost:8080/monitor/config").success(function (data) {
                 $timeout(function () {
                     $scope.vm = monitorConfigMapper(data);
-                    getAllMonitorStatus($scope.vm);
+                    refreshService.start();
                 });
             }).error(function () {
                     console.log(arguments);
@@ -53,17 +85,6 @@ angular.module("monitorApp", ["ui.bootstrap"])
                 item.shouldBeOpen = true;
             };
 
-            var getMonitorStatus = function (item) {
-                $http.get("http://localhost:8080/monitor/" + item.id).success(function (data) {
-                    item.result = data;
-                }).error(function () {
-                        console.log(arguments);
-                    });
-            };
+        }
 
-            var getAllMonitorStatus = function (monitoring) {
-                angular.forEach(monitoring.items, function (item) {
-                    getMonitorStatus(item);
-                });
-            };
-        }]);
+    ]);

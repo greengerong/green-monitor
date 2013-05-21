@@ -41,7 +41,7 @@
                 <h5>Service status</h5>
 
                 <ul>
-                    <li>status : {{item.result.success}}</li>
+                    <li>status : {{item.result.success | status}}</li>
                     <li>time : {{item.result.time | timeParser}}</li>
                     <li>log :&nbsp;&nbsp;<a ng-click="open(item);">see more...</a>
 
@@ -83,7 +83,7 @@
                     }
                     return input;
                 };
-            }).filter("timeParser", function () {
+            }).filter("timeParser",function () {
                 return function (time) {
                     var minutes = Math.floor(time / ( 60 * 1000));
                     var divisor_for_seconds = time % ( 60 * 1000);
@@ -92,6 +92,10 @@
                     var mseconds = Math.ceil(divisor_for_mseconds);
 
                     return minutes + "min:" + seconds + "s:" + mseconds + "ms";
+                };
+            }).filter("status", function () {
+                return function (status) {
+                    return status ? "Passed" : "Failed";
                 };
             })
             .controller("monitorCtr", ["$scope", "$timeout", "$http", "monitorConfigMapper"

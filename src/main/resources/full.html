@@ -30,14 +30,14 @@
         <h4>{{item.name}}</h4>
         <hr/>
         <div class="row-fluid" style="max-height: 150px;overflow-y: auto;">
-            <div class="span8">
+            <div class="span6">
                 <h5>Config information</h5>
                 <ul>
                     <li ng-repeat="p in item.paramkeyValuePairs">{{p.key}} : {{p.value}}</li>
                 </ul>
                 <p>{{item.description}}</p>
             </div>
-            <div class="span4">
+            <div class="span6">
                 <h5>Service status(ajax:{{item.ajaxStatus}})</h5>
 
                 <ul>

@@ -33,9 +33,9 @@ angular.module("monitorApp", ["ui.bootstrap"])
             return status ? "Passed" : "Failed";
         };
     })
-    .controller("monitorCtr", ["$scope", "$timeout", "$http", "$window", "refreshTimer",
+    .controller("monitorCtr", ["$scope", "$timeout", "$filter", "$http", "$window", "refreshTimer",
         "monitorConfigMapper", "host"
-        , function ($scope, $timeout, $http, $window, refreshTimer, monitorConfigMapper, host) {
+        , function ($scope, $timeout, $filter, $http, $window, refreshTimer, monitorConfigMapper, host) {
 
             var refreshService = function () {
                 var getMonitorStatus = function (item) {
@@ -91,6 +91,10 @@ angular.module("monitorApp", ["ui.bootstrap"])
             $scope.open = function (item) {
                 item.shouldBeOpen = true;
             };
+
+            $scope.getFailedCount = function () {
+                return $filter('filter')($scope.vm.items, {"result.success": false}).length;
+            }
 
         }
 

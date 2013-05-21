@@ -24,7 +24,10 @@
 <body id="ng-app" ng-app="monitorApp">
 
 <div ng-controller="monitorCtr" class="container">
-    <h2>{{vm.name}} ( version : {{vm.version}} )</h2>
+    <h2>{{vm.name}} ( version : {{vm.version}} )<span
+            ng-class="{'alert-success':!getFailedCount(),'alert-error':getFailedCount()}"
+            style="font-size:20px;float:right;padding:4px;">failed : {{getFailedCount()}} services</span>
+    </h2>
 
     <div ng-class="{'alert-error':!item.result.success,'box':true,'well':true}" ng-repeat="item in vm.items">
         <h4>{{item.name}}</h4>

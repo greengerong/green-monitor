@@ -1,5 +1,6 @@
 angular.module("monitorApp", ["ui.bootstrap"])
-    .value("refreshTimer", 2000)
+    .value("refreshTimer", window.refreshTimer || 2000)
+    .value("host", window.monitorHost || "http://localhost:8080")
     .factory("monitorConfigMapper",function () {
         return function (config) {
             angular.forEach(config.items, function (item, i) {
@@ -33,12 +34,12 @@ angular.module("monitorApp", ["ui.bootstrap"])
         };
     })
     .controller("monitorCtr", ["$scope", "$timeout", "$http", "$window", "refreshTimer",
-        "monitorConfigMapper"
-        , function ($scope, $timeout, $http, $window, refreshTimer, monitorConfigMapper) {
+        "monitorConfigMapper", "host"
+        , function ($scope, $timeout, $http, $window, refreshTimer, monitorConfigMapper, host) {
 
             var refreshService = function () {
                 var getMonitorStatus = function (item) {
-                    $http.get("http://localhost:8080/monitor/" + item.id).success(function (data) {
+                    $http.get(host + "/monitor/" + item.id).success(function (data) {
                         $timeout(function () {
                             item.result = data;
                         })
@@ -57,6 +58,7 @@ angular.module("monitorApp", ["ui.bootstrap"])
                 var timer = null;
                 return {
                     start: function () {
+                        getAllMonitorStatus();//first call must be soon.
                         timer = $window.setInterval(getAllMonitorStatus, refreshTimer);
                     },
                     stop: function () {
@@ -67,7 +69,7 @@ angular.module("monitorApp", ["ui.bootstrap"])
                 };
             }();
 
-            $http.get("http://localhost:8080/monitor/config").success(function (data) {
+            $http.get(host + "/monitor/config").success(function (data) {
                 $timeout(function () {
                     $scope.vm = monitorConfigMapper(data);
                     refreshService.start();

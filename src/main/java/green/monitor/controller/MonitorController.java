@@ -41,7 +41,7 @@ public class MonitorController {
         return monitorFactory.run(id);
     }
 
-    @RequestMapping(value = "", method = RequestMethod.GET)
+    @RequestMapping(value = "all", method = RequestMethod.GET)
     @ResponseBody
     public Map<String, MonitorResult> runAll() throws Exception {
         return monitorFactory.runAll();
@@ -50,6 +50,10 @@ public class MonitorController {
     @RequestMapping(value = "resource/{type}/{template}", method = RequestMethod.GET)
     @ResponseBody
     public String getResource(@PathVariable String type, @PathVariable String template) throws IOException {
+        return getFileResource(type, template);
+    }
+
+    private String getFileResource(String type, String template) throws IOException {
         InputStream inputStream = null;
         try {
             System.out.println(template);
@@ -61,4 +65,12 @@ public class MonitorController {
             }
         }
     }
+
+    @RequestMapping(value = "", method = RequestMethod.GET)
+    @ResponseBody
+    public String index() throws IOException {
+        return getResource("html", "full");
+    }
+
+
 }

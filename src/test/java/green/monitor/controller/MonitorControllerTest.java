@@ -58,4 +58,5 @@ public class MonitorControllerTest {
 
         assertThat(resultMap, is(map));
     }
+
 }

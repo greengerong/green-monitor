@@ -79,7 +79,7 @@ public class MonitorFactoryTest {
         //then
         assertThat(result.isSuccess(), is(true));
         assertThat(result.getTime(), is(not(0L)));
-        assertThat(result.getLog(), is("log"));
+        assertThat(result.getLog(), is("log\r\n"));
     }
 }
 

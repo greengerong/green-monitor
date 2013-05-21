@@ -23,7 +23,7 @@ public class ContextLogger {
 
     public void append(String text) {
         try {
-            writer.write(text);
+            writer.write(String.format("%s\r\n", text));
         } catch (IOException e) {
             new RuntimeException(e);
         }

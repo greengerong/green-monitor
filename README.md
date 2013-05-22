@@ -4,9 +4,13 @@ Let monitor work with your project
 ===============================
 
 1：Create your spring mvc(3.0） project.
+
 2: add bean in your spring ioc config:
+
   ensure enable annotation driver:
+  
   like this；
+  
   <?xml version="1.0" encoding="UTF-8"?>
   <beans xmlns="http://www.springframework.org/schema/beans"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -37,14 +41,19 @@ Let monitor work with your project
   </beans>
 
  3: Add monitor config in your mian/resources, file name is applicationContext.xml.
+ 
    if you want to set config for each env, you have two way to do it.
+   
    1: set your web app machine env(key:appenv), monitor will find the config monitor-config.[appenv].xml.
+   
    2:use maven to compile for each env.
 
   ===============================
   monitor config
   ===============================
+  
   1:sample:
+
 
   <?xml version="1.0" encoding="UTF-8"?>
   <monitoring version="1.0" name="monitor-sample">
@@ -78,6 +87,8 @@ Let monitor work with your project
 
 2: you can extensions the monitor runner by yourself, and config it in  monitoring/monitors/monitor,
   like this:
+  
    <monitors>
-            <monitor name="mock-monitor">green.monitor.demo.MockMonitorRunner</monitor>
+      <monitor name="mock-monitor">green.monitor.demo.MockMonitorRunner</monitor>
    </monitors>
+   

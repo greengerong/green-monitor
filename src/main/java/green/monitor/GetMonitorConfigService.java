@@ -12,7 +12,7 @@ import static org.apache.commons.lang.StringUtils.isBlank;
 public class GetMonitorConfigService implements IGetMonitorConfigService {
 
     public static final String MONITOR_CONFIG_FILE = "monitor-config%s.xml";
-    public static final String ENV_KEY = "env";
+    public static final String ENV_KEY = "appenv";
 
     @Override
     public Reader getMonitorConfigReader() {

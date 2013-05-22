@@ -1,6 +1,9 @@
 build status: [![Build Status](https://travis-ci.org/greengerong/green-monitor.png)](https://travis-ci.org/greengerong/green-monitor)
+
 ===============================
+
 Let monitor work with your project
+
 ===============================
 
 1：Create your spring mvc(3.0） project.
@@ -49,46 +52,49 @@ Let monitor work with your project
    2:use maven to compile for each env.
 
   ===============================
+  
   monitor config
+  
   ===============================
+  
   
   1:sample:
 
 
-  <?xml version="1.0" encoding="UTF-8"?>
-  <monitoring version="1.0" name="monitor-sample">
-      <monitors>
-          <monitor name="mock-monitor">green.monitor.demo.MockMonitorRunner</monitor>
-      </monitors>
-      <items>
-          <item monitor="http-connection" name="hello service">
-              <params>
-                  <param name="url">http://localhost:8080/demo/hello</param>
-                  <param name="method">GET</param>
-                  <param name="response-code">200</param>
-                  <param name="param">name=success</param>
-              </params>
-              <description>This is a monitor for hello service.should be success.</description>
-          </item>
-          <item monitor="http-connection" name="error service 2">
-              <params>
-                  <param name="url">http://localhost:8080/demo/failed</param>
-                  <param name="method">GET</param>
-                  <param name="response-code">200</param>
-                  <param name="param">name=must be failed</param>
-              </params>
-              <description>This is a monitor for error service.should be failed.</description>
-          </item>
-          <item monitor="mock-monitor" name="Random failed Service">
-              <description>This monitor will be random failed!</description>
-          </item>
-      </items>
-  </monitoring>
+         <?xml version="1.0" encoding="UTF-8"?>
+          <monitoring version="1.0" name="monitor-sample">
+              <monitors>
+                  <monitor name="mock-monitor">green.monitor.demo.MockMonitorRunner</monitor>
+              </monitors>
+              <items>
+                  <item monitor="http-connection" name="hello service">
+                      <params>
+                          <param name="url">http://localhost:8080/demo/hello</param>
+                          <param name="method">GET</param>
+                          <param name="response-code">200</param>
+                          <param name="param">name=success</param>
+                      </params>
+                      <description>This is a monitor for hello service.should be success.</description>
+                  </item>
+                  <item monitor="http-connection" name="error service 2">
+                      <params>
+                          <param name="url">http://localhost:8080/demo/failed</param>
+                          <param name="method">GET</param>
+                          <param name="response-code">200</param>
+                          <param name="param">name=must be failed</param>
+                      </params>
+                      <description>This is a monitor for error service.should be failed.</description>
+                  </item>
+                  <item monitor="mock-monitor" name="Random failed Service">
+                      <description>This monitor will be random failed!</description>
+                  </item>
+              </items>
+          </monitoring>
 
 2: you can extensions the monitor runner by yourself, and config it in  monitoring/monitors/monitor,
   like this:
   
-   <monitors>
-      <monitor name="mock-monitor">green.monitor.demo.MockMonitorRunner</monitor>
-   </monitors>
+       <monitors>
+          <monitor name="mock-monitor">green.monitor.demo.MockMonitorRunner</monitor>
+       </monitors>
    

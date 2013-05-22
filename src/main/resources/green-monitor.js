@@ -97,7 +97,11 @@ angular.module("monitorApp", ["ui.bootstrap"])
             };
 
             $scope.getFailedCount = function () {
-                return $filter('filter')($scope.vm.items, {"result.success": false}).length;
+                if ($scope.vm && $scope.vm.items) {
+                    return $filter('filter')($scope.vm.items, {"result.success": false}).length;
+                }
+
+                return 0;
             }
 
         }

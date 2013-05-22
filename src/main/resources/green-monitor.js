@@ -1,5 +1,5 @@
 angular.module("monitorApp", ["ui.bootstrap"])
-    .value("refreshTimer", window.refreshTimer || 2000)
+    .value("refreshTimer", window.refreshTimer || 2 * 1000 * 60)
     .value("host", window.monitorHost || "http://localhost:8080")
     .factory("monitorConfigMapper",function () {
         return function (config) {

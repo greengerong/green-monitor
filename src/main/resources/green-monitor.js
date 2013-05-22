@@ -3,12 +3,16 @@ angular.module("monitorApp", ["ui.bootstrap"])
     .value("host", window.monitorHost || "http://localhost:8080")
     .factory("monitorConfigMapper",function () {
         return function (config) {
-            angular.forEach(config.items, function (item, i) {
-                item.paramkeyValuePairs = [];
-                angular.forEach(item.params, function (value, key) {
-                    item.paramkeyValuePairs.push({key: key, value: value});
-                })
-            });
+            if (config.items) {
+                angular.forEach(config.items, function (item, i) {
+                    item.paramkeyValuePairs = [];
+                    if (item.params) {
+                        angular.forEach(item.params, function (value, key) {
+                            item.paramkeyValuePairs.push({key: key, value: value});
+                        });
+                    }
+                });
+            }
             return config;
         };
     }).filter("simpleDescription",function () {

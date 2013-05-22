@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <monitoring version="1.0" name="monitor-sample">
     <monitors>
+        <monitor name="mock-monitor">green.monitor.demo.MockMonitorRunner</monitor>
     </monitors>
     <items>
         <item monitor="http-connection" name="hello service">
@@ -20,6 +21,9 @@
                 <param name="param">name=must be failed</param>
             </params>
             <description>This is a monitor for error service.should be failed.</description>
+        </item>
+        <item monitor="mock-monitor" name="Random failed Service">
+            <description>This monitor will be random failed!</description>
         </item>
     </items>
 </monitoring>

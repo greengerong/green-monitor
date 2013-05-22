@@ -56,7 +56,6 @@ public class MonitorController {
     private String getFileResource(String type, String template) throws IOException {
         InputStream inputStream = null;
         try {
-            System.out.println(template);
             inputStream = ResourceUtil.getCurrentResourceAsStream(String.format("%s.%s", template, type));
             return IOUtils.getStringFromReader(new InputStreamReader(inputStream));
         } finally {

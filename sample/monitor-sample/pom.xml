@@ -15,7 +15,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring.version>3.0.5.RELEASE</spring.version>
-        <green.monitor.version>1.2-SNAPSHOT</green.monitor.version>
+        <green.monitor.version>1.2</green.monitor.version>
     </properties>
     <dependencies>
         <dependency>

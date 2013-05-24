@@ -1,5 +1,5 @@
 angular.module("monitorApp", ["ui.bootstrap"])
-    .value("refreshTimer", window.refreshTimer || 1 * 1000 * 60)
+    .value("refreshTimer", window.refreshTimer || 1 * 1000 * 30)
     .value("host", window.monitorHost || "http://localhost:8080")
     .factory("monitorConfigMapper",function () {
         return function (config) {
@@ -24,13 +24,16 @@ angular.module("monitorApp", ["ui.bootstrap"])
         };
     }).filter("timeParser",function () {
         return function (time) {
-            var minutes = Math.floor(time / ( 60 * 1000));
-            var divisor_for_seconds = time % ( 60 * 1000);
-            var seconds = Math.floor(divisor_for_seconds / (1000));
-            var divisor_for_mseconds = divisor_for_seconds % 1000;
-            var mseconds = Math.ceil(divisor_for_mseconds);
+            if (time) {
+                var minutes = Math.floor(time / ( 60 * 1000));
+                var divisor_for_seconds = time % ( 60 * 1000);
+                var seconds = Math.floor(divisor_for_seconds / (1000));
+                var divisor_for_mseconds = divisor_for_seconds % 1000;
+                var mseconds = Math.ceil(divisor_for_mseconds);
 
-            return minutes + "min:" + seconds + "s:" + mseconds + "ms";
+                return minutes + "min:" + seconds + "s:" + mseconds + "ms";
+            }
+            return  0 + "min:" + 0 + "s:" + 0 + "ms";
         };
     }).filter("status", function () {
         return function (status) {

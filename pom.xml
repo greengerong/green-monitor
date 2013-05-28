@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.github.greengerong</groupId>
@@ -26,7 +27,7 @@
         <artifactId>oss-parent</artifactId>
         <version>7</version>
     </parent>
-    <description />
+    <description/>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -40,6 +41,7 @@
         <jackson.version>1.9.12</jackson.version>
         <commons-httpclient.version>3.1</commons-httpclient.version>
         <spring-jdbc.version>3.2.2.RELEASE</spring-jdbc.version>
+        <servlet-api.version>2.5</servlet-api.version>
     </properties>
 
     <dependencies>
@@ -105,6 +107,12 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
             <version>${spring-jdbc.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>${servlet-api.version}</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 

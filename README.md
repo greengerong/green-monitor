@@ -50,6 +50,14 @@ Let monitor work with your project
    1: set your web app machine env(key:appenv), monitor will find the config monitor-config.[appenv].xml.
    
    2:use maven to compile for each env.
+   
+ 4: depends:
+ 
+    <dependency>
+      <groupId>com.github.greengerong</groupId>
+      <artifactId>green.monitor</artifactId>
+      <version>1.2</version>
+    </dependency>
 
   ===============================
   

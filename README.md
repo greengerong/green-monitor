@@ -56,7 +56,7 @@ Let monitor work with your project
     <dependency>
       <groupId>com.github.greengerong</groupId>
       <artifactId>green.monitor</artifactId>
-      <version>1.2</version>
+      <version>1.3</version>
     </dependency>
 
   ===============================
@@ -105,4 +105,16 @@ Let monitor work with your project
        <monitors>
           <monitor name="mock-monitor">green.monitor.demo.MockMonitorRunner</monitor>
        </monitors>
-   
+
+ 3: you can use add jsonp filter on you project to  use ajx jsonp call service.
+
+    <filter>
+        <filter-name>jsonp</filter-name>
+        <filter-class>green.monitor.filer.JsonpFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>jsonp</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    You also can change jsonp parameter name from init param.

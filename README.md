@@ -56,7 +56,7 @@ Let monitor work with your project
     <dependency>
       <groupId>com.github.greengerong</groupId>
       <artifactId>green.monitor</artifactId>
-      <version>1.3</version>
+      <version>1.4</version>
     </dependency>
 
   ===============================

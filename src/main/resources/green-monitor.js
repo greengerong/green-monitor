@@ -1,6 +1,6 @@
 angular.module("monitorApp", ["ui.bootstrap"])
     .value("refreshTimer", window.refreshTimer || 1 * 1000 * 30)
-    .value("host", window.monitorHost || "http://localhost:8080")
+//    .value("host", window.monitorHost || "http://localhost:8080")
     .factory("monitorConfigMapper",function () {
         return function (config) {
             if (config.items) {
@@ -41,13 +41,13 @@ angular.module("monitorApp", ["ui.bootstrap"])
         };
     })
     .controller("monitorCtr", ["$scope", "$timeout", "$filter", "$http", "$window", "refreshTimer",
-        "monitorConfigMapper", "host"
-        , function ($scope, $timeout, $filter, $http, $window, refreshTimer, monitorConfigMapper, host) {
+        "monitorConfigMapper"
+        , function ($scope, $timeout, $filter, $http, $window, refreshTimer, monitorConfigMapper) {
 
             var refreshService = function () {
                 var getMonitorStatus = function (item) {
                     item.ajaxStatus = "start...";
-                    $http.get(host + "/monitor/" + item.id).success(function (data) {
+                    $http.get("monitor/" + item.id).success(function (data) {
                         $timeout(function () {
                             item.result = data;
                             item.ajaxStatus = "complete";
@@ -81,7 +81,7 @@ angular.module("monitorApp", ["ui.bootstrap"])
                 };
             }();
 
-            $http.get(host + "/monitor/config").success(function (data) {
+            $http.get("monitor/config").success(function (data) {
                 $timeout(function () {
                     $scope.vm = monitorConfigMapper(data);
                     refreshService.start();
